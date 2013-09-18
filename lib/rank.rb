@@ -1,4 +1,5 @@
 require_relative 'euclidean_distance'
+require_relative 'pearson_correlation'
 
 class Rank
   attr_reader :similarity
@@ -10,7 +11,9 @@ class Rank
   def top_matches(prefs, person, n=5)
     scores = []
 
+    puts prefs
     prefs.each do |k, v|
+      puts "#{k} => #{v}"
       if k != person
         scores << similarity.sim_distance(prefs, person, k)
       end
@@ -85,8 +88,8 @@ def critics
   }
 end
 
-rank = Rank.new(EuclideanDistance.new)
+#rank1 = Rank.new(EuclideanDistance.new)
+#prefs[person1][k]puts rank1.top_matches(critics, 'Toby', 3)
 
-scores = rank.top_matches(critics, 'Toby', 3)
-
-puts scores
+rank2 = Rank.new(PearsonCorrelation.new)
+puts rank2.top_matches(critics, 'Toby', 3)

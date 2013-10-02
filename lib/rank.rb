@@ -11,16 +11,13 @@ class Rank
   def top_matches(prefs, person, n=5)
     scores = []
 
-    puts prefs
     prefs.each do |k, v|
-      puts "#{k} => #{v}"
       if k != person
-        scores << similarity.sim_distance(prefs, person, k)
+        scores << { k => similarity.sim_distance(prefs, person, k) }
       end
     end
 
-    puts scores
-    sorted = scores.sort
+    sorted = scores.sort_by { |s| s.values }
 
     reverse = []
     sorted.reverse_each do |s|
@@ -88,8 +85,8 @@ def critics
   }
 end
 
-#rank1 = Rank.new(EuclideanDistance.new)
-#prefs[person1][k]puts rank1.top_matches(critics, 'Toby', 3)
+rank1 = Rank.new(EuclideanDistance.new)
+puts rank1.top_matches(critics, 'Toby', 3)
 
 rank2 = Rank.new(PearsonCorrelation.new)
 puts rank2.top_matches(critics, 'Toby', 3)

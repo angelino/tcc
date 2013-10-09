@@ -1,5 +1,7 @@
 require 'csv'
 
+require_relative 'book_rating'
+
 class BookRatings
   attr_reader :filename
 

@@ -1,4 +1,5 @@
 require_relative '../lib/book_rating'
+require_relative '../lib/book_rating'
 
 describe BookRating do
   it 'should have a user id' do

@@ -20,6 +20,6 @@ class BookRatings
   end
 
   def data
-    CSV.open(filename, 'r', col_sep: ';', headers: true, header_converters: :symbol)
+    CSV.open(filename, 'r', encoding: 'cp1252', col_sep: ';', headers: true, header_converters: :symbol)
   end
 end
